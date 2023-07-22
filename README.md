@@ -44,7 +44,7 @@ GET http://127.0.0.1:3000/tasks HTTP/1.1
 ## Architecture Overview
 
 ### Credits
-A singleton, used by RESTFUL controller, implemented on ```alphabet/backend/src/credits/index.ts```.
+A singleton, used by RESTFUL controller, implemented on ```src/credits/index.ts```.
 
 ### Debits
 A process that starting by:
@@ -52,10 +52,10 @@ A process that starting by:
 import * as processes from './processes';
 processes.debits.start();
 ```
-This process is a worker for debit tasks manager in ```alphabet/backend/src/debits/tasks.ts```
+This process is a worker for debit tasks manager in ```src/debits/tasks.ts```
 
 ## Black Box implementation
-Processor or the black box on ```alphabet/backend/src/mock/processor.ts```
+Processor or the black box on ```src/mock/processor.ts```
 
 Defined while initiating ```Credits``` singleton:
 ```javascript
