@@ -21,7 +21,7 @@ docker-compose up -d
 
 ## Testing the application
 
-Call perform_advance(dst_bank_account, amount)
+Call ```perform_advance(dst_bank_account, amount)```
 ```http
 
 POST http://127.0.0.1:3000/perform_advance HTTP/1.1
@@ -55,7 +55,7 @@ processes.debits.start();
 This process is a worker for debit tasks manager in ```src/debits/tasks.ts```
 
 ## Black Box implementation
-Processor or the black box on ```src/mock/processor.ts```
+An example for an implementation of processor (or the black box) on ```src/mock/processor.ts```
 
 Defined while initiating ```Credits``` singleton:
 ```javascript
