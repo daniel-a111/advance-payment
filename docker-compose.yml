@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123123123
+    # expose:
+    #   - '5432'
+      # - '35432'
+    ports:
+      # - '5432:5432'
+      - '35432:5432'
+      # - '35432:5434'
+
+  ts-node-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    container_name: ts-node-docker
+    expose:
+      - '3000'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_URI=postgres://postgres:123123123@postgres:5432
+      - FAILED_RATE_RANDOM=0.3
+      - BANK_ACC=acc1234
+      # - SQL_DEBUG=1
+      # - REPAYMENT_SLOT=1000
+      # - MISSING_TASK_DELAY_MS=10000
+      # - PROCESSING_TIMEOUT=2000
+    # command: node dist/cjs/index.js
+    command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; node dist/cjs/index.js'
+
