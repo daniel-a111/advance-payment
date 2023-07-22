@@ -1,6 +1,6 @@
 import * as config from '../config';
 import { STATUS_SUCC } from "../consts";
-import { DebitTask } from "../models";
+import * as debits from '../debits';
 import { Processor, Transaction } from "../services/processor";
 import { FutureDebit } from "../types";
 
@@ -39,7 +39,7 @@ class Credits {
                 dstBankAccount
             });
         }
-        await DebitTask.bulkCreate(futures as any[]);
+        await debits.tasks.regTasks(futures);
     }
 
     async performDebit(dstBankAccount: string, amount: number) {
